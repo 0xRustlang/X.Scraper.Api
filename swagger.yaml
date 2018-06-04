@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: X.Scraper
+host: localhost
+basePath: /v1
+schemes:
+  - http
+produces:
+  - application/json
+security:
+ - basicAuth: []
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication.
+paths:
+  /proxies/{protocol}:
+    get:
+      summary: Get proxies by a protocol
+      operationId: getProxiesByProtocol
+      parameters:
+        - in: path
+          name: protocol
+          type: string
+          required: true
+          description: Name of the preferred protocol
+      responses:
+        "200":
+          description: Proxy list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Proxy'
+  /proxies:
+    get:
+      summary: Get lastest proxies
+      operationId: getProxies
+      responses:
+        "200":
+          description: Proxy list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Proxy'            
+definitions:
+  Proxy:
+    properties:
+      server:
+        type: string
+        x-isnullable: false
+        example: "192.168.0.12"
+      port:
+        type: number
+        format: integer
+        x-isnullable: false
+        example: 1080
+      iso_code:
+        type: string
+        x-isnullable: false
+        example: "CN"
+      protocol:
+        type: string
+        x-isnullable: false
+        example: "SOCKS5"
+        enum: ["HTTPS", "HTTP", "SOCKS5"]
+      ping_time_ms:
+        type: integer
+        format: int
+        x-isnullable: false
+        example: 2500
+      loss_ratio:
+        type: number
+        format: double
+        x-isnullable: false
+        example: 0.3333333
+
