@@ -15,15 +15,15 @@ securityDefinitions:
     type: basic
     description: HTTP Basic Authentication.
 paths:
-  /proxies/{protocol}:
+  /proxies:
     get:
       summary: Get proxies by a protocol
       operationId: getProxiesByProtocol
       parameters:
-        - in: path
+        - in: query
           name: protocol
           type: string
-          required: true
+          required: false
           description: Name of the preferred protocol
       responses:
         "200":
@@ -32,17 +32,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Proxy'
-  /proxies:
-    get:
-      summary: Get lastest proxies
-      operationId: getProxies
-      responses:
-        "200":
-          description: Proxy list
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Proxy'            
 definitions:
   Proxy:
     properties:
