@@ -8,12 +8,7 @@ schemes:
   - http
 produces:
   - application/json
-security:
- - basicAuth: []
-securityDefinitions:
-  basicAuth:
-    type: basic
-    description: HTTP Basic Authentication.
+security: []
 paths:
   /proxy:
     get:
