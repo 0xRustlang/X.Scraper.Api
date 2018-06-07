@@ -13,7 +13,8 @@ paths:
   /proxy:
     get:
       summary: Get proxies by a protocol
-      operationId: getProxiesByProtocol
+      x-swagger-router-controller: ProxyController
+      operationId: getProxy
       parameters:
         - in: query
           name: protocol
