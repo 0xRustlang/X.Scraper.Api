@@ -24,6 +24,15 @@ paths:
           items:
             type: string
             enum: ["HTTPS","HTTP","SOCKS5"]
+        - in: query
+          name: limit
+          required: false
+          description: Number of proxies
+          type: integer
+        - in: query
+          name: offset
+          required: false
+          description: Position to start result from
       responses:
         "200":
           description: Proxy list
@@ -49,7 +58,7 @@ definitions:
         example: "CN"
       country:
         type: string
-        x_isnullable: false
+        x-isnullable: false
         example: "China"
       protocol:
         type: string

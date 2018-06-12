@@ -18,7 +18,7 @@
       "get": {
         "summary": "Get proxies by a protocol",
         "x-swagger-router-controller": "ProxyController",
-        "operationId": "getProxiesByProtocol",
+        "operationId": "getProxy",
         "parameters": [
           {
             "in": "query",
@@ -34,6 +34,19 @@
                 "SOCKS5"
               ]
             }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Number of proxies",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Position to start result from"
           }
         ],
         "responses": {
