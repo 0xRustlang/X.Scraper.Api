@@ -47,6 +47,10 @@ definitions:
         type: string
         x-isnullable: false
         example: "CN"
+      country:
+        type: string
+        x_isnullable: false
+        example: "China"
       protocol:
         type: string
         x-isnullable: false
