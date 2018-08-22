@@ -39,13 +39,17 @@
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Number of proxies",
-            "type": "integer"
+            "type": "integer",
+            "default": 150,
+            "minimum": 0,
+            "maximum": 150,
+            "description": "Number of proxies"
           },
           {
-            "in": "query",
             "name": "offset",
+            "in": "query",
             "required": false,
+            "type": "integer",
             "description": "Position to start result from"
           }
         ],

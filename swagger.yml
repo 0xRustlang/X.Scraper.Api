@@ -27,11 +27,15 @@ paths:
         - in: query
           name: limit
           required: false
-          description: Number of proxies
           type: integer
-        - in: query
-          name: offset
+          default: 150
+          minimum: 0
+          maximum: 150
+          description: Number of proxies
+        - name: offset
+          in: query
           required: false
+          type: integer
           description: Position to start result from
       responses:
         "200":
