@@ -16,7 +16,7 @@
   "paths": {
     "/proxy": {
       "get": {
-        "summary": "Get proxies by a protocol",
+        "summary": "Get proxies",
         "x-swagger-router-controller": "ProxyController",
         "operationId": "getProxy",
         "parameters": [
@@ -29,7 +29,6 @@
             "items": {
               "type": "string",
               "enum": [
-                "HTTPS",
                 "HTTP",
                 "SOCKS5"
               ]
@@ -51,6 +50,23 @@
             "required": false,
             "type": "integer",
             "description": "Position to start result from"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reliable",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "default": 2
           }
         ],
         "responses": {
@@ -60,6 +76,34 @@
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Proxy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/country": {
+      "get": {
+        "summary": "Get countries",
+        "x-swagger-router-controller": "CountryController",
+        "operationId": "getCountry",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "reliable",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "default": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Country list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
           }
