@@ -23,7 +23,7 @@ paths:
           type: array
           items:
             type: string
-            enum: ["HTTP","SOCKS5"]
+            enum: ["HTTP", "SOCKS5"]
         - in: query
           name: limit
           required: false
@@ -74,7 +74,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
+              $ref: '#/definitions/Country'
 definitions:
   Proxy:
     properties:
@@ -110,4 +110,12 @@ definitions:
         format: double
         x-isnullable: false
         example: 0.3333333
-
+  Country:
+    iso_code:
+      type: string
+      x-isnullable: false
+      example: "CN"
+    country:
+      type: string
+      x-isnullable: false
+      example: "China"
