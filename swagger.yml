@@ -23,7 +23,7 @@ paths:
           type: array
           items:
             type: string
-            enum: ["HTTP", "SOCKS5"]
+            enum: ["HTTP","SOCKS5"]
         - in: query
           name: limit
           required: false
@@ -74,7 +74,19 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Country'
+              type: string
+  /relevant:
+    get:
+      summary: Get premium proxies
+      x-swagger-router-controller: RelevantController
+      operationId: getRelevant
+      responses:
+        "200":
+          description: Premium proxy list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Proxy'
 definitions:
   Proxy:
     properties:
@@ -110,12 +122,11 @@ definitions:
         format: double
         x-isnullable: false
         example: 0.3333333
-  Country:
-    iso_code:
-      type: string
-      x-isnullable: false
-      example: "CN"
-    country:
-      type: string
-      x-isnullable: false
-      example: "China"
+      username:
+        type: string
+        x-isnullable: true
+        example: "USER"
+      password:
+        type: string
+        x-isnullable: true
+        example: "PASSWORD"

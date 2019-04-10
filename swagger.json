@@ -1,0 +1,191 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "X.Scraper"
+  },
+  "host": "localhost",
+  "basePath": "/v1",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [],
+  "paths": {
+    "/proxy": {
+      "get": {
+        "summary": "Get proxies",
+        "x-swagger-router-controller": "ProxyController",
+        "operationId": "getProxy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "protocol",
+            "required": false,
+            "description": "Name(s) of the preferred protocol(s)",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "HTTP",
+                "SOCKS5"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer",
+            "default": 150,
+            "minimum": 0,
+            "maximum": 150,
+            "description": "Number of proxies"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Position to start result from"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reliable",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "default": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Proxy list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Proxy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/country": {
+      "get": {
+        "summary": "Get countries",
+        "x-swagger-router-controller": "CountryController",
+        "operationId": "getCountry",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "reliable",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "default": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Country list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relevant": {
+      "get": {
+        "summary": "Get premium proxies",
+        "x-swagger-router-controller": "RelevantController",
+        "operationId": "getRelevant",
+        "responses": {
+          "200": {
+            "description": "Premium proxy list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Proxy"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Proxy": {
+      "properties": {
+        "server": {
+          "type": "string",
+          "x-isnullable": false,
+          "example": "192.168.0.12"
+        },
+        "port": {
+          "type": "number",
+          "format": "integer",
+          "x-isnullable": false,
+          "example": 1080
+        },
+        "iso_code": {
+          "type": "string",
+          "x-isnullable": false,
+          "example": "CN"
+        },
+        "country": {
+          "type": "string",
+          "x-isnullable": false,
+          "example": "China"
+        },
+        "protocol": {
+          "type": "string",
+          "x-isnullable": false,
+          "example": "SOCKS5",
+          "enum": [
+            "HTTPS",
+            "HTTP",
+            "SOCKS5"
+          ]
+        },
+        "ping_time_ms": {
+          "type": "integer",
+          "format": "int",
+          "x-isnullable": false,
+          "example": 2500
+        },
+        "loss_ratio": {
+          "type": "number",
+          "format": "double",
+          "x-isnullable": false,
+          "example": 0.3333333
+        },
+        "username": {
+          "type": "string",
+          "x-isnullable": true,
+          "example": "USER"
+        },
+        "password": {
+          "type": "string",
+          "x-isnullable": true,
+          "example": "PASSWORD"
+        }
+      }
+    }
+  }
+}
