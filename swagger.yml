@@ -23,7 +23,7 @@ paths:
           type: array
           items:
             type: string
-            enum: ["HTTP","SOCKS5"]
+            enum: ["HTTP", "SOCKS5"]
         - in: query
           name: limit
           required: false
@@ -37,18 +37,6 @@ paths:
           required: false
           type: integer
           description: Position to start result from
-        - name: country
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-        - name: reliable
-          in: query
-          required: false
-          type: integer
-          minimum: 0
-          default: 2
       responses:
         "200":
           description: Proxy list
@@ -56,25 +44,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Proxy'
-  /country:
-    get:
-      summary: Get countries
-      x-swagger-router-controller: CountryController
-      operationId: getCountry
-      parameters:
-        - in: query
-          name: reliable
-          required: false
-          type: integer
-          minimum: 0
-          default: 2
-      responses:
-        "200":
-          description: Country list
-          schema:
-            type: array
-            items:
-              type: string
   /relevant:
     get:
       summary: Get premium proxies
@@ -125,8 +94,6 @@ definitions:
       username:
         type: string
         x-isnullable: true
-        example: "USER"
       password:
         type: string
         x-isnullable: true
-        example: "PASSWORD"
